@@ -1,3 +1,7 @@
+// import Font Awesome CSS
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
+config.autoAddCss = false;
 import AppShell from "@/components/layouts/AppShell";
 import "@/styles/globals.css";
 import { SessionProvider } from "next-auth/react";
