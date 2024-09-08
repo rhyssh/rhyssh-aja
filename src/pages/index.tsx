@@ -1,115 +1,93 @@
-import Image from "next/image";
-import localFont from "next/font/local";
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+import Head from "next/head";
+import ParticleCustom from "@/components/fragments/ParticleCustom";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { FormEvent, useEffect, useState } from "react";
+import { signIn, signOut } from "next-auth/react"; // Tambahkan signOut
 
-export default function Home() {
+const App = () => {
+  const { push } = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+  const callbackUrl = "/home"; // Definisikan URL redirect
+
+  useEffect(() => {
+    // Reset session saat halaman dimuat
+    const resetSession = async () => {
+      await signOut({ redirect: false }); // Reset session tanpa redirect otomatis
+    };
+
+    resetSession(); // Panggil fungsi reset session
+  }, []);
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setIsLoading(true);
+
+    const form = event.target as HTMLFormElement;
+    const nameInput = form.elements.namedItem("name") as HTMLInputElement; // Mendapatkan elemen input dengan nama "name"
+    const name = nameInput.value; // Ambil nilai dari input form
+    try {
+      const res = await signIn("credentials", {
+        redirect: false,
+        name, // Mengirim username dari input form
+        callbackUrl,
+      });
+
+      if (res?.ok) {
+        push(callbackUrl); // Redirect jika signIn berhasil
+      } else {
+        console.error("Login failed:", res?.error);
+      }
+    } catch (err) {
+      console.error("Error during signIn:", err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
-    <div
-      className={`${geistSans.variable} ${geistMono.variable}  grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="https://nextjs.org/icons/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/pages/index.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    <>
+      <Head>
+        <title>Kenalan Dulu</title>
+      </Head>
+      <div className="relative h-screen overflow-hidden">
+        <ParticleCustom />
+        <div className="w-screen absolute z-10 bottom-1/3">
+          <div className="mx-auto bg-neutral-500 rounded-xl shadow-xl shadow-blue-500/50 flex-col space-y-4 lg:space-y-6 text-white px-3 lg:px-8 py-5 lg:py-10 w-fit ">
+            <div>
+              <h1 className="text-lg min-[500px]:text-2xl font-semibold lg:text-3xl">Haiii...What&apos;s your name???😁😁</h1>
+              <p>May I make your acquaintance ?</p>
+            </div>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="name"
+                id="username"
+                placeholder="your name"
+                className="w-full px-2 py-2 rounded-md text-neutral-500"
+              />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="https://nextjs.org/icons/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+              <div className="flex justify-center gap-3 mt-4">
+                <button
+                  type="submit"
+                  className={`bg-primary-500 hover:bg-primary-600 shadow-md shadow-primary-600 px-4 py-2 rounded-md capitalize ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
+                  disabled={isLoading} // Disable button saat loading
+                >
+                  {isLoading ? "Loading..." : "My Pleasure"}
+                </button>
+
+                <Link href="/home">
+                  <div className="bg-danger-500 hover:bg-danger-600 shadow-md shadow-danger-600 px-4 py-2 rounded-md capitalize cursor-pointer">Sorry, I can&apos;t.</div>
+                </Link>
+              </div>
+            </form>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="https://nextjs.org/icons/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </div>
+    </>
   );
-}
+};
+
+export default App;
