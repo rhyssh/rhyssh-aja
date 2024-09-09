@@ -2,7 +2,6 @@
 import { Children } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-import { NextUIProvider } from "@nextui-org/react";
 
 const Navbar = dynamic(() => import("@/components/layouts/Navbar"));
 
@@ -16,12 +15,10 @@ const AppShell = (props: AppShellProps) => {
   const { pathname } = useRouter();
   //   console.log(pathname);
   return (
-    <NextUIProvider>
       <main className={pathname === "/404" ? "bg-white" : ""}>
         {!disableNavbar.includes(pathname) && <Navbar />}
         {children}
       </main>
-    </NextUIProvider>
   );
 };
 

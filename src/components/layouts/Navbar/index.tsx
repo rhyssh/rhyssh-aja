@@ -1,68 +1,70 @@
-import React from "react";
-import { Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, NavbarContent, NavbarItem, Link, Button } from "@nextui-org/react";
-import { AcmeLogo } from "@/components/fragments/AcmeLogo";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
+import Link from "next/link";
+import { Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle } from "flowbite-react";
+import { faBars,faX } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/router";
+import { useState } from "react";
 
+// Konversi FontAwesomeIcon ke SVG
+const BarIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 448 512"
+    width="24"
+    height="24"
+    fill="currentColor"
+    className="text-primary-400"
+  >
+    <path d={faBars.icon[4] as string} />
+  </svg>
+);
 
-export default function NavbarCustom() {
-  const menuItems = ["Profile", "Dashboard", "Activity", "Analytics", "System", "Deployments", "My Settings", "Team Settings", "Help & Feedback", "Log Out"];
+const CloseIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 448 512"
+    width="24"
+    height="24"
+    fill="currentColor"
+    className="text-danger-500"
+  >
+    <path d={faX.icon[4] as string} />
+  </svg>
+);
+
+const NavbarC = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const { pathname } = useRouter(); // Ambil path rute saat ini
+
+  const menuItems = [
+    { name: "Home", href: "/home" },
+    { name: "Projects", href: "/projects" },
+    { name: "Blogs", href: "/blogs" },
+    { name: "Contact", href: "/contact" },
+  ];
+
+  const activeLinkStyle = "text-accent-500 bg-primary-600 md:bg-transparent md:text-primary-400  font-bold border-none";
+  const inactiveLinkStyle = "text-white hover:text-yellow-400";
 
   return (
-    <Navbar disableAnimation isBordered className="text-accent-500 bg-neutral-500 py-2 " >
-      <NavbarContent className="sm:hidden" justify="center">
-      <NavbarMenuToggle icon={(isOpen) => isOpen ? <FontAwesomeIcon icon={faBars} /> : <FontAwesomeIcon icon={faX} />}  />
-      </NavbarContent>
-
-      <NavbarContent className="sm:hidden pr-3" justify="center">
-        <NavbarBrand>
-          <AcmeLogo />
-          <p className="font-bold text-inherit">ACME</p>
-        </NavbarBrand>
-      </NavbarContent>
-
-      <NavbarContent className="hidden sm:flex gap-4" justify="end">
-        <NavbarBrand>
-          <AcmeLogo />
-          <p className="font-bold text-inherit">ACME</p>
-        </NavbarBrand>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Features
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link href="#" aria-current="page" color="warning">
-            Customers
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Integrations
-          </Link>
-        </NavbarItem>
-      </NavbarContent>
-
-      <NavbarContent justify="end">
-        <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} color="warning" href="#" variant="flat">
-            Sign Up
-          </Button>
-        </NavbarItem>
-      </NavbarContent>
-
-      <NavbarMenu>
+    <Navbar fluid={false}  className="bg-neutral-500 text-white rounded-b\">
+      <NavbarBrand as={Link} href="/">
+        <span className="self-center whitespace-nowrap text-xl font-semibold text-primary-400">타마요가</span>
+      </NavbarBrand>
+      {/* Hapus style default dari NavbarToggle */}
+      <NavbarToggle onClick={() => setIsOpen(!isOpen)}  barIcon={isOpen ? CloseIcon : BarIcon} className="!bg-transparent !shadow-none !ring-0" />
+      <NavbarCollapse hidden={isOpen ? false : true} className="text-white">
         {menuItems.map((item, index) => (
-          <NavbarMenuItem key={`${item}-${index}`}>
-            <Link className="w-full" color={index === 2 ? "warning" : index === menuItems.length - 1 ? "danger" : "foreground"} href="#" size="lg">
-              {item}
-            </Link>
-          </NavbarMenuItem>
+          <NavbarLink
+            key={index}
+            href={item.href}
+            className={pathname === item.href ? activeLinkStyle : inactiveLinkStyle} // Active class based on current route
+          >
+            {item.name}
+          </NavbarLink>
         ))}
-      </NavbarMenu>
+      </NavbarCollapse>
     </Navbar>
   );
-}
+};
+
+export default NavbarC;
