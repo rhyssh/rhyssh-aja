@@ -28,6 +28,9 @@ const config: Config = {
         "accent-500": "#F2F2F2",
         "accent-600": "#E4E4E4",
       },
+      fontFamily: {
+        mona: ['Mona Sans', 'sans-serif'],
+      },
     },
   },
   plugins: [flowbite.plugin()],

@@ -16,12 +16,14 @@
     "@tsparticles/engine": "^3.5.0",
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.5.0",
+    "animate.css": "^4.1.1",
     "firebase": "^10.13.1",
     "flowbite-react": "^0.10.1",
     "next": "14.2.8",
     "next-auth": "^4.24.7",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "typeit-react": "^2.7.2"
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
