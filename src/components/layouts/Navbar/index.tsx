@@ -9,7 +9,7 @@ export default function NavbarCustom() {
   const menuItems = ["Profile", "Dashboard", "Activity", "Analytics", "System", "Deployments", "My Settings", "Team Settings", "Help & Feedback", "Log Out"];
 
   return (
-    <Navbar disableAnimation isBordered>
+    <Navbar disableAnimation isBordered className="text-accent-500 bg-neutral-500 py-2 " >
       <NavbarContent className="sm:hidden" justify="center">
       <NavbarMenuToggle icon={(isOpen) => isOpen ? <FontAwesomeIcon icon={faBars} /> : <FontAwesomeIcon icon={faX} />}  />
       </NavbarContent>

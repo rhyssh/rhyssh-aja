@@ -54,7 +54,7 @@ const App = () => {
       </Head>
       <div className="relative h-screen overflow-hidden">
         <ParticleCustom />
-        <div className="w-screen absolute z-10 bottom-1/3">
+        <div className="w-screen absolute z-10 max-lg:top-1/3 lg:bottom-1/3 ">
           <div className="mx-auto bg-neutral-500 rounded-xl shadow-xl shadow-blue-500/50 flex-col space-y-4 lg:space-y-6 text-white px-3 lg:px-8 py-5 lg:py-10 w-fit ">
             <div>
               <h1 className="text-lg min-[500px]:text-2xl font-semibold lg:text-3xl">Haiii...What&apos;s your name???😁😁</h1>
