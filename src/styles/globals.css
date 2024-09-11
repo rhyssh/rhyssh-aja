@@ -14,6 +14,13 @@
 html {
   font-family: 'Mona Sans', sans-serif;
 }
+.no-scroll {
+  overflow: hidden;
+  position: fixed; /* Untuk mencegah geseran pada tampilan */
+  width: 100%; /* Pastikan elemen tetap lebar penuh */
+  top: 0;
+  left: 0;
+}
 
 :root {
   --background: #ffffff;

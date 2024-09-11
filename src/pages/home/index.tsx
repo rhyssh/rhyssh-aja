@@ -8,6 +8,7 @@ const HomePage = () => {
   // console.log(data);
   return (
     <div className="overflow-hidden min-h-screen ">
+
       <HomeView />
     </div>
   );

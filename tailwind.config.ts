@@ -29,7 +29,7 @@ const config: Config = {
         "accent-600": "#E4E4E4",
       },
       fontFamily: {
-        mona: ['Mona Sans', 'sans-serif'],
+        mona: ["var(--font-mona)"],
       },
     },
   },
