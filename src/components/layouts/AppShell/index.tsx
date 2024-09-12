@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Children } from "react";
+import { Children, useEffect } from "react";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import localfont from "next/font/local";
+import RandomCat from "@/components/fragments/RandomCat";
 const Navbar = dynamic(() => import("@/components/layouts/Navbar2"));
 const Footer = dynamic(() => import("@/components/layouts/Footer"));
 
@@ -25,8 +26,11 @@ const AppShell = (props: AppShellProps) => {
   const { children } = props;
   const { pathname } = useRouter();
   //   console.log(pathname);
+
+
   return (
-    <main className={` ${pathname === "/404" ? "bg-white" : "bg-neutral-800"} ${mona.className}`}>
+    <main className={` ${pathname === "/404" ? "bg-white" : "bg-neutral-800"} ${mona.className} `}>
+      <RandomCat />
       {!disableNavbar.includes(pathname) && <Navbar />}
       {children}
       {!disableNavbar.includes(pathname) && <Footer />}

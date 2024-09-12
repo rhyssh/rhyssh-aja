@@ -3,16 +3,14 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: 'Mona Sans';
-  src:
-    url('/fonts/Mona-Sans.woff2') format('woff2 supports variations'),
-    url('/fonts/Mona-Sans.woff2') format('woff2-variations');
+  font-family: "Mona Sans";
+  src: url("/fonts/Mona-Sans.woff2") format("woff2 supports variations"), url("/fonts/Mona-Sans.woff2") format("woff2-variations");
   font-weight: 200 900;
   font-stretch: 75% 125%;
 }
 
 html {
-  font-family: 'Mona Sans', sans-serif;
+  font-family: "Mona Sans", sans-serif;
 }
 .no-scroll {
   overflow: hidden;
@@ -29,8 +27,6 @@ html {
   --neutral-400: #595757;
   --neutral-500: #312d2d;
   --neutral-600: #100c0c;
-
-
 }
 
 @media (prefers-color-scheme: dark) {
