@@ -1,0 +1,23 @@
+/* Custom scroll bar */
+#style-2::-webkit-scrollbar {
+  width: 8px; /* Lebar scroll bar */
+  height: 8px; /* Tinggi scroll bar jika horizontal */
+}
+
+/* Track (jalur scroll bar) */
+#style-2::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius: 10px;
+}
+
+/* Handle (pegangan scroll bar) */
+#style-2::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+/* Handle ketika di-hover */
+#style-2::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+

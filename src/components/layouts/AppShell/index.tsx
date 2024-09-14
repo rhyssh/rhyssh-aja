@@ -29,8 +29,8 @@ const AppShell = (props: AppShellProps) => {
 
 
   return (
-    <main className={` ${pathname === "/404" ? "bg-white" : "bg-neutral-800"} ${mona.className} `}>
-      <RandomCat />
+    <main  className={` ${pathname === "/404" ? "bg-white" : "bg-neutral-800"} ${mona.className} `} >
+      {/* <RandomCat /> */}
       {!disableNavbar.includes(pathname) && <Navbar />}
       {children}
       {!disableNavbar.includes(pathname) && <Footer />}

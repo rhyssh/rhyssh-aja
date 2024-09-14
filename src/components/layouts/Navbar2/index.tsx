@@ -27,7 +27,7 @@ const Navbar2 = () => {
         anime({
           targets: bar,
           width: hoverIndex === index ? "100%" : "0%",
-          easing: 'easeInOutExpo',
+          easing: "easeInOutExpo",
           duration: 300,
         });
       });
@@ -39,6 +39,7 @@ const Navbar2 = () => {
         translateY: [-50, 0], // Navbar muncul dari atas
         opacity: [0, 1], // Navbar muncul secara perlahan
         easing: "easeOutExpo",
+        delay: 500,
         duration: 800, // Durasi animasi
       });
       setIsInitialLoad(false); // Set state to false after initial load animation
@@ -62,6 +63,7 @@ const Navbar2 = () => {
   }, [isOpen, isInitialLoad, hoverIndex]); // Add isInitialLoad to dependencies
 
   useEffect(() => {
+    
     if (iconRef.current) {
       anime({
         targets: iconRef.current,
@@ -94,8 +96,12 @@ const Navbar2 = () => {
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-5">
           {menuItems.map((item, index) => (
-            <Link href={item.href} key={index} className="relative">
-              <li className={`relative hover:text-primary-400 cursor-pointer transition-colors duration-300 ${pathname === item.href ? "text-primary-500 font-semibold border-b-2 border-primary-400" : ""}`} onMouseEnter={() => setHoverIndex(index)} onMouseLeave={() => setHoverIndex(null)}>
+            <Link href={item.href} key={index} className="relative animate__animated animate__fadeInDown animate__slow">
+              <li
+                className={`relative hover:text-primary-400 cursor-pointer transition-colors duration-300 ${pathname === item.href ? "text-primary-500 font-semibold border-b-2 border-primary-400" : ""}`}
+                onMouseEnter={() => setHoverIndex(index)}
+                onMouseLeave={() => setHoverIndex(null)}
+              >
                 {item.name}
                 <span
                   ref={(el) => {

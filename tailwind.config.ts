@@ -31,6 +31,15 @@ const config: Config = {
       fontFamily: {
         mona: ["var(--font-mona)"],
       },
+      keyframes: {
+        "bounce-custom": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+      },
+      animation: {
+        "bounce-custom": "bounce-custom 1.5s ease-in-out infinite",
+      },
     },
   },
   plugins: [flowbite.plugin()],
