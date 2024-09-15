@@ -21,12 +21,12 @@ const TechtoolSection = () => {
           <Carousel
             leftControl={
               <div>
-                <FontAwesomeIcon className="text-primary-400 fa-lg" icon={faChevronLeft} />
+                <FontAwesomeIcon className="text-primary-400 fa-lg bg-primary-400/20 py-2 px-3 rounded-full hover:bg-primary-400/40" icon={faChevronLeft} />
               </div>
             }
             rightControl={
               <div>
-                <FontAwesomeIcon className="text-primary-400 fa-lg" icon={faChevronRight} />
+                <FontAwesomeIcon className="text-primary-400 fa-lg bg-primary-400/20 py-2 px-3 rounded-full hover:bg-primary-400/40" icon={faChevronRight} />
               </div>
             }
             indicators={false}
@@ -69,18 +69,18 @@ const TechtoolSection = () => {
                 <Image src={"/svg/adobe-premiere.svg"} width={10} height={10} className="w-10" alt="capcut"></Image>
                 <Image src={"/svg/capcut.svg"} width={10} height={10} className="w-9 bg-white rounded-lg" alt="contentful logo"></Image>
                 <svg className="text-[#f66a65] bg-white rounded-full w-10" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                  <g fill="none" stroke="#f66a65" stroke-linecap="round" stroke-linejoin="round">
+                  <g fill="none" stroke="#f66a65" strokeLinecap="round" strokeLinejoin="round">
                     <circle cx="24" cy="24" r="21.5" />
                     <path d="m18.3742 13.5334v20.9332" />
                     <path d="m29.626 34.467-8.635-10.467 8.635-10.467" />
                     <path d="m20.9909 24h-2.6167" />
                   </g>
-                  <circle cx="24" cy="6" r=".75" />
-                  <circle cx="41.119" cy="18.4377" r=".75" />
-                  <circle cx="34.5801" cy="38.5623" r=".75" />
-                  <circle cx="13.4199" cy="38.5623" r=".75" />
-                  <circle cx="6.881" cy="18.4377" r=".75" />
-                  <circle cx="24" cy="6" r=".75" />
+                  <circle cx="24" cy="6" r=".75" fill="#f66a65" />
+                  <circle cx="41.119" cy="18.4377" r=".75" fill="#f66a65" />
+                  <circle cx="34.5801" cy="38.5623" r=".75" fill="#f66a65" />
+                  <circle cx="13.4199" cy="38.5623" r=".75" fill="#f66a65" />
+                  <circle cx="6.881" cy="18.4377" r=".75" fill="#f66a65" />
+                  <circle cx="24" cy="6" r=".75" fill="#f66a65" />
                 </svg>{" "}
               </div>
             </div>

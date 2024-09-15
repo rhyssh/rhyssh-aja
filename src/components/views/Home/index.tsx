@@ -11,6 +11,7 @@ import "animate.css";
 import Link from "next/link";
 import ExpertiseSection from "@/components/section/home/ExpertiseSection";
 import TechtoolSection from "@/components/section/home/TechtoolSection";
+import WorkedSection from "@/components/section/home/WorkedSection";
 
 const SpaceMono = Space_Mono({
   subsets: ["latin"],
@@ -105,7 +106,6 @@ const HomeView = () => {
           </div>
         </Link>
       </div>
-      <div className="h-screen flex flex-col items-center justify-center">
         {/* expertise */}
         <div id="expertise" className="scroll-mt-4">
           <ExpertiseSection />
@@ -113,9 +113,8 @@ const HomeView = () => {
         <div className="mt-10 lg:mt-24">
           <TechtoolSection />
         </div>
-      </div>
       <div className="mt-10">
-        
+        <WorkedSection />
       </div>
       <div>
         <ComingSoon />
