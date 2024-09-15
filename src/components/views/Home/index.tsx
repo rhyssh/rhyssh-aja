@@ -10,6 +10,7 @@ import "animate.css";
 // import { faCircleArrowDown } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import ExpertiseSection from "@/components/section/home/ExpertiseSection";
+import TechtoolSection from "@/components/section/home/TechtoolSection";
 
 const SpaceMono = Space_Mono({
   subsets: ["latin"],
@@ -94,9 +95,9 @@ const HomeView = () => {
           </div>
         </div>
         <Link className="text-center hidden  sm:flex justify-center mt-5" href={"#expertise"}>
-          <div className="flex flex-col items-center gap-3 animate-bounce-custom">
+          <div className="flex flex-col items-center gap-3 animate-bounce-custom ">
             <p className="text-slate-300 text-sm">See More</p>
-            <div className="bg-neutral-600 p-2 w-fit rounded-full translate-y-2 animate-bounce-custom shadow-lg shadow-blue-500/50 ">
+            <div className="bg-neutral-600 hover:scale-110 hover:bg-primary-400/20 p-2 w-fit rounded-full translate-y-2 shadow-lg shadow-blue-500/50 ">
               <svg className="w-6 h-6  text-primary-400  " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19V5m0 14-4-4m4 4 4-4" />
               </svg>
@@ -104,9 +105,17 @@ const HomeView = () => {
           </div>
         </Link>
       </div>
-      {/* expertise */}
-      <div id="expertise" className="mt-10 scroll-mt-4">
-        <ExpertiseSection />
+      <div className="h-screen flex flex-col items-center justify-center">
+        {/* expertise */}
+        <div id="expertise" className="scroll-mt-4">
+          <ExpertiseSection />
+        </div>
+        <div className="mt-10 lg:mt-24">
+          <TechtoolSection />
+        </div>
+      </div>
+      <div className="mt-10">
+        
       </div>
       <div>
         <ComingSoon />

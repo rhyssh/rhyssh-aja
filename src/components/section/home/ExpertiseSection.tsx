@@ -80,7 +80,8 @@ const ExpertiseSection = () => {
             What I Do
           </h1>{" "}
           <div id="desc-web-dev" className={`${activeTab === "web-dev" ? "" : "hidden"}  text-sm text-slate-200 text-justify`}>
-            Creating and maintaining responsive, multi-device websites with engaging designs and optimal performance. With over 2.5 years of experience, I have mastered various technologies to deliver exceptional user experiences:{" "}
+            Creating and maintaining responsive, multi-device websites with engaging designs and optimal performance. With over <strong>2.5 years of experience</strong> , I have mastered various technologies to deliver exceptional user
+            experiences:{" "}
             <ul className=" list-outside mt-2 list-[square] pl-2">
               <li>
                 <strong className="text-primary-400">React.js</strong> for front-end development, building interactive and efficient user interfaces,
