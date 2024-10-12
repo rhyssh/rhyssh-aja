@@ -5,8 +5,15 @@ import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Carousel } from "flowbite-react";
 import Image from "next/image";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 const TechtoolSection = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Durasi animasi dalam milidetik
+    });
+  }, []);
   return (
     <div className="grid grid-cols-1 gap-6 sm:gap-8">
       {/* Title for mobile */}
@@ -17,7 +24,7 @@ const TechtoolSection = () => {
       {/* Main grid container */}
       <div className="flex flex-col items-center lg:flex-row gap-7 justify-center">
         {/* Carousel Section */}
-        <div className="h-40 w-full sm:w-[450px] ">
+        <div data-aos="fade-right" data-aos-duration="2000" className="h-40 w-full sm:w-[450px] ">
           <Carousel
             leftControl={
               <div>
@@ -88,7 +95,7 @@ const TechtoolSection = () => {
         </div>
 
         {/* Description Section */}
-        <div className="flex flex-col w-full sm:w-[600px]">
+        <div data-aos="fade-left" data-aos-duration="2000" className="flex flex-col w-full sm:w-[600px]">
           <h1 id="WID" className="hidden lg:inline sm:text-2xl font-semibold">
             Tech Stack & Tools
           </h1>

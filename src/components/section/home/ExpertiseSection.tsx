@@ -4,12 +4,17 @@ import { useEffect, useState } from "react";
 import { faMobileScreen, faVideo } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import "./expertise.module.css";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const ExpertiseSection = () => {
   const [activeTab, setActiveTab] = useState("web-dev");
   const [href, setHref] = useState("#web-dev");
 
   useEffect(() => {
+    AOS.init({
+      duration: 1000, // Durasi animasi dalam milidetik
+    });
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
         // Misalnya, ukuran layar large di Tailwind adalah >= 1024px
@@ -37,12 +42,12 @@ const ExpertiseSection = () => {
   const classAktive = "bg-gradient-to-r from-indigo-500 from-10% via-sky-500 via-30% to-emerald-500 to-90%";
   return (
     <div className="flex flex-col sm:gap-[2rem]">
-      <h1 id="WID" className="text-center text-xl sm:hidden">
+      <h1 data-aos="fade-up" id="WID" className="text-center text-xl sm:hidden">
         What I Do
       </h1>
-      <div className="flex flex-col sm:flex-row-reverse sm:justify-center sm:items-center gap-7">
+      <div  className="flex flex-col sm:flex-row-reverse sm:justify-center sm:items-center gap-7">
         <div id="style-2" className="py-4 flex gap-4 overflow-x-auto">
-          <div id="web-dev" onClick={() => handleTabClick("web-dev")} className={`scroll-mt-10 h-fit  w-fit p-[1px] rounded-lg transition-all ${activeTab === "web-dev" ? classAktive : ""}`}>
+          <div  data-aos="fade-left" data-aos-duration="2000" id="web-dev" onClick={() => handleTabClick("web-dev")} className={`scroll-mt-10 h-fit  w-fit p-[1px] rounded-lg transition-all ${activeTab === "web-dev" ? classAktive : ""}`}>
             <Link href={href == "large" ? "#WID" : "#web-dev"} className="">
               <CardExpertise
                 icon={faChrome}
@@ -53,7 +58,7 @@ const ExpertiseSection = () => {
             </Link>
           </div>
 
-          <div id="mobile-dev" onClick={() => handleTabClick("mobile-dev")} className={`scroll-mt-10 h-fit w-fit p-[1px] rounded-lg ${activeTab === "mobile-dev" ? classAktive : ""}`}>
+          <div data-aos="fade-left" data-aos-duration="3000" id="mobile-dev" onClick={() => handleTabClick("mobile-dev")} className={`scroll-mt-10 h-fit w-fit p-[1px] rounded-lg ${activeTab === "mobile-dev" ? classAktive : ""}`}>
             <Link href={href == "large" ? "#WID" : "#mobile-dev"}>
               <CardExpertise
                 icon={faMobileScreen} // Ganti dengan ikon yang sesuai
@@ -64,7 +69,7 @@ const ExpertiseSection = () => {
             </Link>
           </div>
 
-          <div id="vg-dev" onClick={() => handleTabClick("vg-dev")} className={`scroll-mt-10 h-fit w-fit p-[1px] rounded-lg ${activeTab === "vg-dev" ? classAktive : ""}`}>
+          <div data-aos="fade-left" data-aos-duration="4000" id="vg-dev" onClick={() => handleTabClick("vg-dev")} className={`scroll-mt-10 h-fit w-fit p-[1px] rounded-lg ${activeTab === "vg-dev" ? classAktive : ""}`}>
             <Link href={href == "large" ? "#WID" : "#vg-dev"}>
               <CardExpertise
                 icon={faVideo} // Ikon yang sesuai
@@ -75,7 +80,7 @@ const ExpertiseSection = () => {
             </Link>
           </div>
         </div>
-        <div className="py-4 lg:w-[500px]">
+        <div data-aos="fade-right" className="py-4 lg:w-[500px]">
           <h1 id="WID" className="hidden sm:inline sm:text-2xl font-semibold ">
             What I Do
           </h1>{" "}

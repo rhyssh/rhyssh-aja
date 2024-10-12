@@ -2,9 +2,11 @@ import TypeOne from "@/components/fragments/Typewriter/TypeOne";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { Space_Mono } from "next/font/google";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { handleToggle } from "@/utils/toogleAnimation"; // Import handleToggle function
 import ComingSoon from "../ComingSoon";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "animate.css";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faCircleArrowDown } from "@fortawesome/free-solid-svg-icons";
@@ -24,7 +26,12 @@ const HomeView = () => {
   const elementsToHide = useRef<HTMLDivElement>(null);
   const elementsToShow = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
-
+  // Inisialisasi AOS
+  useEffect(() => {
+    AOS.init({
+      duration: 1000, // Durasi animasi dalam milidetik
+    });
+  }, []);
   return (
     <div className="text-white px-3 py-4 relative w-full  ">
       <div className="h-screen flex flex-col ">
@@ -106,13 +113,13 @@ const HomeView = () => {
           </div>
         </Link>
       </div>
-        {/* expertise */}
-        <div id="expertise" className="scroll-mt-4">
-          <ExpertiseSection />
-        </div>
-        <div className="mt-10 lg:mt-24">
-          <TechtoolSection />
-        </div>
+      {/* expertise */}
+      <div  id="expertise" className="mt-24 scroll-mt-4">
+        <ExpertiseSection />
+      </div>
+      <div data-aos="fade-up" className="mt-10 lg:mt-24">
+        <TechtoolSection />
+      </div>
       <div className="mt-10">
         <WorkedSection />
       </div>
